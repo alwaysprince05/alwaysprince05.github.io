@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prince Kumar Maurya</title>
+<meta name="description" content="Prince Kumar Maurya - CS student in Bengaluru. Backend in Java, open-source contributions in C++.">
+<style>
+  :root {
+    --bg: #fbfbf9; --fg: #1a1a1a; --muted: #5f5f5a; --line: #e3e2dc; --link: #1d4ed8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #151514; --fg: #e9e8e3; --muted: #a3a29b; --line: #2e2e2b; --link: #8ab4ff; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  main { max-width: 720px; margin: 0 auto; padding: 56px 20px 80px; }
+  h1 { font-size: 28px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 48px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+  h3 { font-size: 16px; margin: 24px 0 4px; }
+  p { margin: 0 0 12px; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .sub { color: var(--muted); margin-bottom: 16px; }
+  .links a { margin-right: 16px; }
+  .tech { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  ul { padding-left: 20px; margin: 6px 0 12px; }
+  li { margin-bottom: 4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  td { padding: 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { width: 42%; padding-right: 12px; }
+  td.n { color: var(--muted); }
+  footer { margin-top: 56px; color: var(--muted); font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Prince Kumar Maurya</h1>
+  <p class="sub">B.Tech CSE student at Medhavi Skills University, Bengaluru (2028). I build backend services in Java and fix bugs in C++ open-source projects.</p>
+  <p class="links">
+    <a href="https://github.com/alwaysprince05">GitHub</a>
+    <a href="https://www.linkedin.com/in/prince-kr-maurya-67a41128b">LinkedIn</a>
+    <a href="https://leetcode.com/u/alwaysprince05/">LeetCode</a>
+    <a href="mailto:prince.p24@medhaviskillsuniversity.edu.in">Email</a>
+  </p>
+
+  <h2>Open source</h2>
+  <p>51 merged pull requests so far. Most of them are bug fixes with a regression test.
+    <a href="https://github.com/search?q=author%3Aalwaysprince05+is%3Apr+is%3Amerged&amp;type=pullrequests">See all of them on GitHub</a>.</p>
+  <table>
+    <tr><td><a href="https://github.com/NVIDIA/stdexec/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">NVIDIA stdexec</a></td><td class="n">21 merged. Lifetime bugs in operation states, a stop-callback ordering bug, tests for every built-in scheduler.</td></tr>
+    <tr><td><a href="https://github.com/TheHPXProject/hpx/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">HPX</a></td><td class="n">12 merged. Data race fix with a regression test, std::chrono overloads for finalize/disconnect, CMake and docs cleanup.</td></tr>
+    <tr><td><a href="https://github.com/duckdb/duckdb/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">DuckDB</a></td><td class="n">6 merged. Duplicate rows in the parallel CSV reader, INT64_MIN overflow, an optimizer rule that broke casts.</td></tr>
+    <tr><td><a href="https://github.com/ClickHouse/ClickHouse/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">ClickHouse</a></td><td class="n">2 merged. Wrong intExp10 results for large inputs, avg() docs.</td></tr>
+    <tr><td><a href="https://github.com/tensorflow/tensorflow/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">TensorFlow</a></td><td class="n">3 merged. Input validation in the XLA paths.</td></tr>
+    <tr><td><a href="https://github.com/pytorch/pytorch/pulls?q=is%3Apr+author%3Aalwaysprince05+label%3AMerged">PyTorch</a></td><td class="n">3 merged. TorchElastic: logger instead of print, etcd server termination handler, docstring fixes.</td></tr>
+    <tr><td><a href="https://github.com/STEllAR-GROUP/docker_build_env/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">STEllAR docker_build_env</a></td><td class="n">3 merged. Fixed the HPX build image for Ubuntu Jammy and newer Sphinx.</td></tr>
+    <tr><td><a href="https://github.com/NVIDIA/NeMo-Agent-Toolkit/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged">NVIDIA NeMo Agent Toolkit</a></td><td class="n">1 merged. Duplicate middleware registration in function chains.</td></tr>
+  </table>
+
+  <h2>Projects</h2>
+
+  <h3><a href="https://github.com/alwaysprince05/game-leaderboard-service">Game Leaderboard Service</a></h3>
+  <div class="tech">Java 21, Spring Boot, Kafka, PostgreSQL, Redis, Docker</div>
+  <p>A leaderboard backend for multiplayer games. Match results come in through a REST API, go through Kafka, and rankings are served from Redis sorted sets.</p>
+  <ul>
+    <li>Kafka can deliver a message twice, so the consumer stores the match id and the points in one transaction and skips repeats.</li>
+    <li>Messages that keep failing go to a dead-letter topic instead of blocking the partition.</li>
+    <li>18 JUnit and Testcontainers tests, run in GitHub Actions.</li>
+  </ul>
+
+  <h3><a href="https://github.com/alwaysprince05/Agent-Red-Teaming-Evaluation-Framework">Agent Red-Teaming Evaluation Framework</a></h3>
+  <div class="tech">Python, FastAPI, pytest</div>
+  <p>Runs attack suites written in YAML against AI agents, scores the results, and compares runs to catch regressions. Has a CLI and an API.</p>
+
+  <h3><a href="https://github.com/alwaysprince05/Orbo.AI">Orbo Beauty AI</a> · <a href="https://orbo-frontend-j0cg.onrender.com/">live demo</a></h3>
+  <div class="tech">Python, FastAPI, React, scikit-learn, Docker</div>
+  <p>Product recommendations over 1,581 products. 0.86 Precision@5 and about 18 ms average latency, with 80 automated tests.</p>
+
+  <h3><a href="https://github.com/alwaysprince05/networksecurity">Network Security Threat Detection</a></h3>
+  <div class="tech">Python, FastAPI, MongoDB, Docker, AWS</div>
+  <p>ML pipeline and API that classifies network traffic records. Deployed to AWS EC2 through GitHub Actions.</p>
+
+  <h2>Skills</h2>
+  <p><strong>Languages:</strong> Java, C++, Python, SQL, JavaScript, TypeScript<br>
+     <strong>Backend:</strong> Spring Boot, Kafka, REST, FastAPI<br>
+     <strong>Data:</strong> PostgreSQL, MySQL, MongoDB, Redis<br>
+     <strong>Testing and tools:</strong> JUnit 5, Mockito, Testcontainers, Docker, GitHub Actions, Linux, Git</p>
+
+  <footer>Bengaluru, India</footer>
+</main>
+</body>
+</html>
