@@ -238,6 +238,100 @@
     .btn { flex: 1 1 auto; justify-content: center; }
     .stat { padding: 18px; }
   }
+
+  /* progress bar */
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--accent); z-index: 60; }
+  .nav-links a.active { color: var(--fg); background: var(--bg-2); }
+
+  /* hero v2 */
+  .hero-bg { position: relative; overflow: hidden; }
+  .hero-bg::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: radial-gradient(color-mix(in srgb, var(--fg) 14%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 70% 30%, #000 30%, transparent 75%);
+            mask-image: radial-gradient(ellipse 70% 60% at 70% 30%, #000 30%, transparent 75%);
+  }
+  .hero-bg > .wrap { position: relative; }
+  .hero-grid { display: grid; grid-template-columns: 1fr 1.08fr; gap: 48px; align-items: center; }
+  .hero-grid h1 { font-size: clamp(38px, 4.4vw, 54px); }
+  .hero-grid h1 .muted { display: block; font-size: .6em; letter-spacing: -0.02em; margin-top: 10px; line-height: 1.15; }
+
+  .term { border: 1px solid var(--line); border-radius: 14px; background: #0a0c0f; box-shadow: 0 24px 60px -24px rgba(0,0,0,.7); overflow: hidden; font-family: var(--mono); font-size: 12.5px; color: #c9d1d9; }
+  :root[data-theme="light"] .term { box-shadow: 0 24px 50px -28px rgba(0,0,0,.35); border-color: #1f242c; }
+  .term-bar { display: flex; align-items: center; gap: 7px; padding: 11px 14px; border-bottom: 1px solid #1f242c; background: #11151a; }
+  .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #3a4048; display: block; }
+  .term-bar i:nth-child(1) { background: #ff5f57; } .term-bar i:nth-child(2) { background: #febc2e; } .term-bar i:nth-child(3) { background: #28c840; }
+  .term-bar span { margin-left: 8px; color: #6e7681; font-size: 12px; }
+  .term-body { padding: 16px 16px 18px; line-height: 1.85; }
+  .term-body .cmd { color: #e6edf3; margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .term-body .cmd b { color: #38d996; font-weight: 500; }
+  .term-line { display: grid; grid-template-columns: 76px 128px 1fr; gap: 10px; white-space: nowrap; }
+  .term-line > span { overflow: hidden; text-overflow: ellipsis; }
+  .t-date { color: #6e7681; } .t-repo { color: #79c0ff; } .t-ok { color: #38d996; }
+  .term-foot { margin-top: 8px; color: #6e7681; }
+  .cursor { display: inline-block; width: 8px; height: 15px; background: #38d996; vertical-align: -3px; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .orgs { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; margin-top: 28px; color: var(--fg-3); font-size: 14px; }
+  .orgs b { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--fg-3); margin-right: 4px; }
+  .orgs span { color: var(--fg-2); font-weight: 600; }
+
+  /* section head with chart */
+  .sec-head { display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: end; margin-bottom: 36px; }
+  .sec-head .sec-lead { margin-bottom: 0; }
+  .chart { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px 12px; }
+  .chart-t { display: flex; justify-content: space-between; font-size: 13px; color: var(--fg-3); }
+  .chart-t b { color: var(--fg); font-weight: 600; }
+  .bars { display: flex; align-items: flex-end; gap: 14px; height: 96px; margin-top: 12px; }
+  .bar { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 6px; height: 100%; }
+  .bar div { width: 100%; border-radius: 6px 6px 2px 2px; background: color-mix(in srgb, var(--accent) 35%, transparent); transform-origin: bottom; transform: scaleY(0); transition: transform .9s cubic-bezier(.2,.8,.2,1); }
+  .bar.peak div { background: var(--accent); }
+  .chart.in .bar div { transform: scaleY(1); }
+  .bar small { font-family: var(--mono); font-size: 11.5px; color: var(--fg-3); }
+  .bar em { font-style: normal; font-family: var(--mono); font-size: 12px; color: var(--fg-2); }
+
+  /* process */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+  .step { position: relative; }
+  .step-n { font-family: var(--mono); font-size: 12px; color: var(--accent); display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+  .step-n::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+  .step h3 { font-size: 16.5px; margin: 0 0 8px; }
+  .step p { color: var(--fg-2); font-size: 14.5px; margin: 0; }
+  .step code { background: var(--bg-2); border: 1px solid var(--line); padding: 1px 5px; border-radius: 5px; font-size: 12.5px; }
+  .case { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; padding: 14px 18px; border: 1px dashed var(--line); border-radius: 12px; font-size: 14.5px; color: var(--fg-2); }
+  .case a { color: var(--accent); font-weight: 500; }
+  .case strong { color: var(--fg); }
+  .result { display: flex; gap: 10px; margin-top: 12px; font-family: var(--mono); font-size: 12.5px; flex-wrap: wrap; }
+  .result span { padding: 3px 8px; border-radius: 6px; }
+  .r-bad { background: rgba(248,81,73,.12); color: #f85149; }
+  .r-good { background: var(--accent-soft); color: var(--accent); }
+
+  /* contact v2 */
+  .socials { display: flex; justify-content: center; gap: 10px; margin-top: 22px; }
+  .socials a { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; border: 1px solid var(--line); background: var(--bg-2); color: var(--fg-2); transition: color .15s, border-color .15s, transform .15s; }
+  .socials a:hover { color: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+  .socials svg { width: 19px; height: 19px; }
+  .copy-btn { cursor: pointer; font-family: inherit; }
+  .copy-btn.done { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 960px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .steps { grid-template-columns: repeat(2, 1fr); gap: 28px 16px; }
+    .sec-head { grid-template-columns: 1fr; align-items: start; }
+    .chart { max-width: 360px; }
+  }
+  @media (max-width: 560px) {
+    .steps { grid-template-columns: 1fr; }
+    .term { font-size: 11.5px; }
+    .term-line { grid-template-columns: 0 118px 1fr; gap: 6px; }
+    .term-line .t-date { visibility: hidden; }
+    .chart { max-width: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor { animation: none; }
+    .bar div { transform: scaleY(1); }
+  }
 </style>
 </head>
 <body>
@@ -247,6 +341,7 @@
     <a href="#top" class="logo">prince<span>.</span>maurya</a>
     <nav class="nav-links" id="links" aria-label="Main">
       <a href="#open-source">Open Source</a>
+      <a href="#process">Process</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#skills">Skills</a>
@@ -263,11 +358,15 @@
   </div>
 </header>
 
+<div class="progress" id="progress"></div>
 <main id="top">
+ <div class="hero-bg">
   <div class="wrap">
     <div class="hero">
+     <div class="hero-grid">
+      <div>
       <span class="badge"><span class="dot"></span>Open to Software Engineering internships</span>
-      <h1>Prince Kumar Maurya<br><span class="muted">Backend &amp; systems engineer.</span></h1>
+      <h1>Prince Kumar Maurya <span class="muted">Backend &amp; systems engineer.</span></h1>
       <p class="lead">I build backend services in <strong>Java</strong> and fix correctness bugs in <strong>C++</strong> open-source systems, from async runtimes to database engines. B.Tech CSE at Medhavi Skills University, Bengaluru, class of 2028.</p>
       <div class="cta">
         <a class="btn primary" href="https://github.com/alwaysprince05" target="_blank" rel="noopener">
@@ -278,11 +377,29 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.3 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13.1H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></svg>
           LinkedIn
         </a>
-        <a class="btn" href="mailto:princemaurya1201@gmail.com">
+        <a class="btn" href="mailto:prince.p24@medhaviskillsuniversity.edu.in">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
           Email me
         </a>
       </div>
+      </div>
+
+      <div class="term reveal" aria-label="Recent merged pull requests">
+        <div class="term-bar"><i></i><i></i><i></i><span>~/open-source</span></div>
+        <div class="term-body">
+          <div class="cmd"><b>$</b> gh search prs --author alwaysprince05 --merged</div>
+          <div class="term-line"><span class="t-date">2026-10-20</span><span class="t-repo">stdexec#2338</span><span>pin read_env's completion-behavior claims</span></div>
+          <div class="term-line"><span class="t-date">2026-10-19</span><span class="t-repo">tf#128592</span><span>Reject rank-0 updates in TensorScatter XLA paths</span></div>
+          <div class="term-line"><span class="t-date">2026-10-19</span><span class="t-repo">clickhouse#126109</span><span>Fix intExp10 for magnitude &gt;= 2^31</span></div>
+          <div class="term-line"><span class="t-date">2026-10-16</span><span class="t-repo">tf#125907</span><span>Fix device placement validation for jit_compile</span></div>
+          <div class="term-line"><span class="t-date">2026-10-14</span><span class="t-repo">stdexec#2333</span><span>Avoid shadowing n_threads in static_thread_pool</span></div>
+          <div class="term-line"><span class="t-date">2026-10-13</span><span class="t-repo">stdexec#2332</span><span>Initialize stop-when's once-flag before callbacks</span></div>
+          <div class="term-foot"><span class="t-ok">✓</span> 51 merged · 8 repositories <span class="cursor"></span></div>
+        </div>
+      </div>
+     </div>
+
+      <div class="orgs reveal"><b>Contributed to</b><span>NVIDIA</span><span>DuckDB</span><span>ClickHouse</span><span>PyTorch</span><span>TensorFlow</span><span>HPX</span><span>STEllAR Group</span></div>
 
       <div class="stats reveal">
         <div class="stat"><b>51</b><span>merged pull requests</span></div>
@@ -292,12 +409,25 @@
       </div>
     </div>
   </div>
+ </div>
 
   <section id="open-source">
     <div class="wrap">
-      <div class="eyebrow">01 / open source</div>
-      <h2>Fixing bugs in code other people depend on</h2>
-      <p class="sec-lead">Most of my PRs are bug fixes that come with a regression test: reproduce it, find the root cause, prove the fix. <a href="https://github.com/search?q=author%3Aalwaysprince05+is%3Apr+is%3Amerged&amp;type=pullrequests" target="_blank" rel="noopener">Browse all merged PRs →</a></p>
+      <div class="sec-head">
+        <div>
+          <div class="eyebrow">01 / open source</div>
+          <h2>Fixing bugs in code other people depend on</h2>
+          <p class="sec-lead">Most of my PRs are bug fixes that come with a regression test: reproduce it, find the root cause, prove the fix. <a href="https://github.com/search?q=author%3Aalwaysprince05+is%3Apr+is%3Amerged&amp;type=pullrequests" target="_blank" rel="noopener">Browse all merged PRs →</a></p>
+        </div>
+        <div class="chart reveal" aria-label="Merged pull requests per month: August 5, September 34, October 12">
+          <div class="chart-t"><span>Merged PRs per month</span><b>2026</b></div>
+          <div class="bars">
+            <div class="bar"><em>5</em><div style="height:15%"></div><small>Aug</small></div>
+            <div class="bar peak"><em>34</em><div style="height:100%"></div><small>Sep</small></div>
+            <div class="bar"><em>12</em><div style="height:35%"></div><small>Oct</small></div>
+          </div>
+        </div>
+      </div>
 
       <div class="grid g3">
         <a class="card reveal" href="https://github.com/NVIDIA/stdexec/pulls?q=is%3Apr+author%3Aalwaysprince05+is%3Amerged" target="_blank" rel="noopener">
@@ -363,9 +493,41 @@
     </div>
   </section>
 
+  <section id="process">
+    <div class="wrap">
+      <div class="eyebrow">02 / process</div>
+      <h2>How I fix a bug</h2>
+      <p class="sec-lead">The same four steps every time. Here they are on one real fix.</p>
+      <div class="case reveal"><span>Case: <strong>DuckDB #25232</strong>, parallel CSV reader returned duplicate rows for files with <code>\r\r\n</code> line endings.</span><a href="https://github.com/duckdb/duckdb/pull/25232" target="_blank" rel="noopener">Read the PR →</a></div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-n">01</div>
+          <h3>Reproduce it</h3>
+          <p>Built a CSV where row 39's first <code>\r</code> lands on byte 1023 of a 1024-byte buffer. Parallel read gave 61 rows, sequential gave 60.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">02</div>
+          <h3>Find the root cause</h3>
+          <p>The boundary split the terminator as <code>\r | \r\n</code>. <code>ProcessOverBufferValue</code> consumed the rest, then fell through and counted the next row a second time.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">03</div>
+          <h3>Fix the smallest thing</h3>
+          <p>Return early when the previous scanner has already counted the row. One function changed, nothing else touched.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-n">04</div>
+          <h3>Prove it with a test</h3>
+          <p>The regression test generates the file on the fly, so the bug can't come back silently.</p>
+          <div class="result"><span class="r-bad">before: 61 rows</span><span class="r-good">after: 60 rows</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="projects">
     <div class="wrap">
-      <div class="eyebrow">02 / projects</div>
+      <div class="eyebrow">03 / projects</div>
       <h2>Things I've built</h2>
       <p class="sec-lead">Backend services where I cared most about what happens when things go wrong.</p>
 
@@ -439,7 +601,7 @@
     <div class="wrap">
       <div class="grid g2" style="gap:48px">
         <div>
-          <div class="eyebrow">03 / experience</div>
+          <div class="eyebrow">04 / experience</div>
           <h2 style="margin-bottom:28px">Where I've worked</h2>
           <div class="tl reveal">
             <div class="tl-item">
@@ -461,7 +623,7 @@
         </div>
 
         <div id="skills">
-          <div class="eyebrow">04 / skills</div>
+          <div class="eyebrow">05 / skills</div>
           <h2 style="margin-bottom:28px">What I work with</h2>
           <div class="grid reveal" style="gap:24px">
             <div class="skill-group"><h3>Languages</h3><div class="chips"><span class="chip">Java</span><span class="chip">C++</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span></div></div>
@@ -477,12 +639,23 @@
   <section id="contact">
     <div class="wrap">
       <div class="contact reveal">
-        <div class="eyebrow">05 / contact</div>
-        <h2>Let's talk</h2>
-        <p class="sec-lead">I'm looking for a software engineering internship where I can work on backend systems. The fastest way to reach me is email.</p>
+        <div class="eyebrow">06 / contact</div>
+        <h2>Let's build something</h2>
+        <p class="sec-lead">I'm looking for a software engineering internship on a team that runs backend systems at scale. Email is the fastest way to reach me, and I usually reply within a day.</p>
         <div class="cta">
-          <a class="btn primary" href="mailto:princemaurya1201@gmail.com">princemaurya1201@gmail.com</a>
-          <a class="btn" href="https://leetcode.com/u/alwaysprince05/" target="_blank" rel="noopener">LeetCode</a>
+          <a class="btn primary" href="mailto:prince.p24@medhaviskillsuniversity.edu.in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            Send an email
+          </a>
+          <button class="btn copy-btn" id="copy" data-email="prince.p24@medhaviskillsuniversity.edu.in">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+            <span>Copy email</span>
+          </button>
+        </div>
+        <div class="socials">
+          <a href="https://github.com/alwaysprince05" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5Z"/></svg></a>
+          <a href="https://www.linkedin.com/in/prince-kumar-maurya-67a41128b/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.3V9h3.4v1.6c.5-.9 1.6-1.8 3.4-1.8 3.6 0 4.300 2.4 4.3 5.5v6.2ZM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2Zm1.8 13.1H3.5V9h3.6v11.5ZM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0Z"/></svg></a>
+          <a href="https://leetcode.com/u/alwaysprince05/" target="_blank" rel="noopener" aria-label="LeetCode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></a>
         </div>
       </div>
     </div>
@@ -517,8 +690,27 @@
       if (e.target.tagName === 'A') { links.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); }
     });
 
-    var nav = document.getElementById('nav');
-    window.addEventListener('scroll', function () { nav.classList.toggle('scrolled', window.scrollY > 8); }, { passive: true });
+    var nav = document.getElementById('nav'), bar = document.getElementById('progress');
+    var navLinks = Array.prototype.slice.call(links.querySelectorAll('a'));
+    var sections = navLinks.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    function onScroll() {
+      var y = window.scrollY, h = document.documentElement.scrollHeight - window.innerHeight;
+      nav.classList.toggle('scrolled', y > 8);
+      bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      var current = -1;
+      sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top < 140) current = i; });
+      navLinks.forEach(function (a, i) { a.classList.toggle('active', i === current); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    var copy = document.getElementById('copy');
+    copy.addEventListener('click', function () {
+      var label = copy.querySelector('span'), email = copy.getAttribute('data-email');
+      function done() { label.textContent = 'Copied!'; copy.classList.add('done'); setTimeout(function () { label.textContent = 'Copy email'; copy.classList.remove('done'); }, 1800); }
+      if (navigator.clipboard) { navigator.clipboard.writeText(email).then(done, function () { window.location.href = 'mailto:' + email; }); }
+      else { window.location.href = 'mailto:' + email; }
+    });
 
     document.getElementById('yr').textContent = new Date().getFullYear();
 
