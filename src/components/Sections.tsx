@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from 'react';
-import { DATA } from '../data';
+import { DATA, numberWords } from '../data';
 import { LINKS, repoColor, repoName, spotlight } from '../lib';
 import { ArrowDown, ArrowUpRight, Code, Copy, GitHub, LeetCode, LinkedIn, Search } from './Icons';
 
@@ -7,10 +7,17 @@ const ext = { target: '_blank', rel: 'noopener' } as const;
 
 /* ---------- Hero ---------- */
 
-const MARQUEE: [string, string, number][] = [
-  ['NVIDIA', 'stdexec', 21], ['HPX', 'parallel runtime', 12], ['DuckDB', 'query engine', 6], ['PyTorch', 'TorchElastic', 3],
-  ['TensorFlow', 'XLA', 3], ['STEllAR Group', 'build env', 3], ['ClickHouse', 'analytics DB', 2], ['NVIDIA', 'NeMo Agent Toolkit', 1],
-];
+const TICKER: Record<string, [string, string]> = {
+  stdexec: ['NVIDIA', 'stdexec'], hpx: ['HPX', 'parallel runtime'], duckdb: ['DuckDB', 'query engine'],
+  pytorch: ['PyTorch', 'TorchElastic'], tensorflow: ['TensorFlow', 'XLA'], docker_build_env: ['STEllAR Group', 'build env'],
+  clickhouse: ['ClickHouse', 'analytics DB'], nemo: ['NVIDIA', 'NeMo Agent Toolkit'], hami: ['HAMi', 'GPU sharing'],
+};
+
+const merged: Record<string, number> = {};
+DATA.prs.forEach((p) => (merged[p[1]] = (merged[p[1]] ?? 0) + 1));
+const MARQUEE: [string, string, number][] = Object.keys(merged)
+  .sort((a, b) => merged[b] - merged[a])
+  .map((k) => [...(TICKER[k] ?? [repoName(k), '']), merged[k]]);
 
 export function Hero() {
   const items = [...MARQUEE, ...MARQUEE];
@@ -82,7 +89,7 @@ export function Work() {
         <div className="sec-head">
           <div>
             <div className="kicker rv"><b>01</b> Open source</div>
-            <h2 className="rv d1">Fifty-one merged. <span className="serif">Every one linked.</span></h2>
+            <h2 className="rv d1">{numberWords(DATA.prs.length)} merged. <span className="serif">Every one linked.</span></h2>
           </div>
           <p className="rv d2">Filter by project or search by keyword. Each row opens the actual pull request, with the discussion and review that got it merged.</p>
         </div>
@@ -402,7 +409,7 @@ export function Footer() {
       <div className="wrap">
         <span>© {new Date().getFullYear()} Prince Kumar Maurya</span>
         <span>
-          Built with React, TypeScript &amp; Vite · PR data from GitHub, Oct 2026 · <a href={LINKS.source} {...ext}>source</a>
+          Built with React, TypeScript &amp; Vite · PR data from GitHub, updated {new Date(DATA.updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })} · <a href={LINKS.source} {...ext}>source</a>
         </span>
       </div>
     </footer>

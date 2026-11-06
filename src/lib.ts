@@ -19,6 +19,7 @@ const REPO: Record<string, { name: string; c: string }> = {
   nemo: { name: 'NVIDIA NeMo', c: '#76b900' },
   keras: { name: 'Keras', c: '#d00000' },
   openshift: { name: 'OpenShift', c: '#ee0000' },
+  hami: { name: 'HAMi-core', c: '#00b4d8' },
 };
 
 export const repoName = (k: string) => REPO[k]?.name ?? k;

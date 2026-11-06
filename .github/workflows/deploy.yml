@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '23 */6 * * *' # refresh GitHub stats every 6 hours
   workflow_dispatch:
 
 permissions:
@@ -24,6 +26,13 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - name: Refresh GitHub data
+        # On failure the committed src/data.json snapshot is used instead.
+        continue-on-error: true
+        run: npm run data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_DATA_TOKEN: ${{ secrets.GH_DATA_TOKEN }}
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
